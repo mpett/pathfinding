@@ -248,6 +248,10 @@ int FindPath(const int nStartX, const int nStartY,
 	std::cout << std::endl;
 	draw_grid(grid, 3, &cost_so_far, nullptr);
 	std::cout << std::endl;
+
+	unordered_map<twoDimensionalGrid::Location, twoDimensionalGrid::Location>::const_iterator got = came_from.find(goal);
+	if (got == came_from.end())
+		return -1;
 	
 	vector<twoDimensionalGrid::Location> path = reconstruct_path(start, goal, came_from);
 
@@ -279,11 +283,11 @@ int FindPath(const int nStartX, const int nStartY,
 
 int main() {	
 
-	unsigned char pMap[] = { 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1 };
-	int pOutBuffer[12];
-	int result = FindPath(0, 0, 1, 2, pMap, 4, 3, pOutBuffer, 12);
-
+	unsigned char pMap[] = { 0, 0, 1, 0, 1, 1, 1, 0, 1 };
+	int pOutBuffer[7];
+	int result = FindPath(2, 0, 0, 2, pMap, 3, 3, pOutBuffer, 7);
 	std::cout << result << std::endl;
+
 	std::getchar();
 	return 0;
 }
