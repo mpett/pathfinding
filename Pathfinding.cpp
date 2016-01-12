@@ -88,38 +88,6 @@ struct Graph {
 	}
 };
 
-
-template<typename Graph>
-unordered_map<typename Graph::Location, typename Graph::Location> breadth_first_search(Graph graph,
-	typename Graph::Location start,
-	typename Graph::Location goal) {
-	typedef typename Graph::Location Location;
-	queue<Location> frontier;
-	frontier.push(start);
-
-	unordered_map<Location, Location> came_from;
-	came_from[start] = start;
-
-	while (!frontier.empty()) {
-		auto current = frontier.front();
-		frontier.pop();
-		
-		if (current == goal) {
-			break;
-		}
-
-		for (auto next : graph.neighbors(current)) {
-		
-			if (!came_from.count(next)) {
-				
-				frontier.push(next);
-				came_from[next] = current;
-			}
-		}
-	}
-	return came_from;
-}
-
 template<typename T, typename Number = int>
 struct PriorityQueue {
 	typedef pair<Number, T> PQElement;
@@ -139,40 +107,6 @@ struct PriorityQueue {
 		return best_item;
 	}
 };
-
-template<typename Graph>
-void dijkstra_search
-(Graph graph,
-	typename Graph::Location start,
-	typename Graph::Location goal,
-	unordered_map<typename Graph::Location, typename Graph::Location>& came_from,
-	unordered_map<typename Graph::Location, int>& cost_so_far)
-{
-	typedef typename Graph::Location Location;
-	PriorityQueue<Location> frontier;
-	frontier.put(start, 0);
-
-	came_from[start] = start;
-	cost_so_far[start] = 0;
-
-	while (!frontier.empty()) {
-		auto current = frontier.get();
-
-		if (current == goal) {
-			break;
-		}
-
-		for (auto next : graph.neighbors(current)) {
-			int new_cost = cost_so_far[current] + graph.cost(current, next);
-			if (!cost_so_far.count(next) || new_cost < cost_so_far[next]) {
-				cost_so_far[next] = new_cost;
-				came_from[next] = current;
-				frontier.put(next, new_cost);
-			}
-		}
-	}
-}
-
 
 template<typename Location>
 vector<Location> reconstruct_path(
@@ -238,14 +172,6 @@ struct twoDimensionalGrid {
 	}
 };
 
-void add_rect(twoDimensionalGrid& grid, int x1, int y1, int x2, int y2) {
-	for (int x = x1; x <= x2; ++x) {
-		for (int y = y1; y <= y2; ++y) {
-			grid.walls.insert(twoDimensionalGrid::Location{ x, y });
-		}
-	}
-}
-
 struct GridWithWeights : twoDimensionalGrid {
 	unordered_set<Location> forests;
 	GridWithWeights(int w, int h) : twoDimensionalGrid(w, h) {}
@@ -253,30 +179,6 @@ struct GridWithWeights : twoDimensionalGrid {
 		return forests.count(b) ? 5 : 1;
 	}
 };
-
-twoDimensionalGrid make_diagram1() {
-	twoDimensionalGrid grid(4, 3);
-	add_rect(grid, 0, 1, 0, 2);
-	add_rect(grid, 2, 1, 2, 1);
-	return grid;
-}
-
-GridWithWeights make_diagram4() {
-	GridWithWeights grid(10, 10);
-	add_rect(grid, 1, 7, 4, 9);
-	typedef twoDimensionalGrid::Location L;
-	grid.forests = unordered_set<twoDimensionalGrid::Location>{
-		L{ 3, 4 }, L{ 3, 5 }, L{ 4, 1 }, L{ 4, 2 },
-		L{ 4, 3 }, L{ 4, 4 }, L{ 4, 5 }, L{ 4, 6 },
-		L{ 4, 7 }, L{ 4, 8 }, L{ 5, 1 }, L{ 5, 2 },
-		L{ 5, 3 }, L{ 5, 4 }, L{ 5, 5 }, L{ 5, 6 },
-		L{ 5, 7 }, L{ 5, 8 }, L{ 6, 2 }, L{ 6, 3 },
-		L{ 6, 4 }, L{ 6, 5 }, L{ 6, 6 }, L{ 6, 7 },
-		L{ 7, 3 }, L{ 7, 4 }, L{ 7, 5 }
-	};
-	return grid;
-
-}
 
 inline int heuristic(twoDimensionalGrid::Location a, twoDimensionalGrid::Location b) {
 	int x1, y1, x2, y2;
