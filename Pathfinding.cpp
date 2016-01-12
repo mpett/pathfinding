@@ -324,38 +324,38 @@ int FindPath(const int nStartX, const int nStartY,
 	const unsigned char* pMap, const int nMapWidth, const int nMapHeight,
 	int* pOutBuffer, const int nOutBufferSize) 
 {
-	twoDimensionalGrid grid = make_diagram1();
+	twoDimensionalGrid grid(nMapWidth, nMapHeight);
+	add_rect(grid, 0, 1, 0, 2);
+	add_rect(grid, 2, 1, 2, 1);
+
+
 	twoDimensionalGrid::Location start{ nStartX, nStartY };
 	twoDimensionalGrid::Location goal{ nTargetX, nTargetY };
 	unordered_map<twoDimensionalGrid::Location, twoDimensionalGrid::Location> came_from;
 	unordered_map<twoDimensionalGrid::Location, int> cost_so_far;
 	a_star_search(grid, start, goal, came_from, cost_so_far);
-	vector<twoDimensionalGrid::Location> path = reconstruct_path(start, goal, came_from);
-	int shortestLength = path.size() - 1;
-	return shortestLength;
-}
-
-int main() {
-	twoDimensionalGrid grid = make_diagram1();
-	twoDimensionalGrid::Location start{ 0, 0 };
-	twoDimensionalGrid::Location goal{ 1, 2 };
-	unordered_map<twoDimensionalGrid::Location, twoDimensionalGrid::Location> came_from;
-	unordered_map<twoDimensionalGrid::Location, int> cost_so_far;
-	a_star_search(grid, start, goal, came_from, cost_so_far);
+	
 	draw_grid(grid, 2, nullptr, &came_from);
 	std::cout << std::endl;
 	draw_grid(grid, 3, &cost_so_far, nullptr);
 	std::cout << std::endl;
+	
 	vector<twoDimensionalGrid::Location> path = reconstruct_path(start, goal, came_from);
+
 	draw_grid(grid, 3, nullptr, nullptr, &path);
 	std::cout << "-------------------" << std::endl;
 
-	unsigned char pMap[]{ 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1 };
-	int pOutBuffer[12];
 
+
+	int shortestLength = path.size() - 1;
+	return shortestLength;
+}
+
+int main() {	
+	unsigned char pMap[] = { 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1 };
+	int pOutBuffer[12];
 	int result = FindPath(0, 0, 1, 2, pMap, 4, 3, pOutBuffer, 12);
 	std::cout << result << std::endl;
-
 	std::getchar();
 	return 0;
 }
