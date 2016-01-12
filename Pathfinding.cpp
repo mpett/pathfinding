@@ -119,6 +119,7 @@ vector<Location> reconstruct_path(
 	path.push_back(current);
 	while (current != start) {
 		current = came_from[current];
+		
 		path.push_back(current);
 	}
 	std::reverse(path.begin(), path.end());
@@ -227,8 +228,6 @@ int FindPath(const int nStartX, const int nStartY,
 	int* pOutBuffer, const int nOutBufferSize) 
 {
 	twoDimensionalGrid grid(nMapWidth, nMapHeight);
-	//add_rect(grid, 0, 1, 0, 2);
-	//add_rect(grid, 2, 1, 2, 1);
 
 	for (int y = 0; y < nMapHeight; ++y) {
 		for (int x = 0; x < nMapWidth; ++x) {
@@ -251,6 +250,23 @@ int FindPath(const int nStartX, const int nStartY,
 	std::cout << std::endl;
 	
 	vector<twoDimensionalGrid::Location> path = reconstruct_path(start, goal, came_from);
+
+	for (int index = 1; index <= nOutBufferSize; index++)
+	{
+		if (index < path.size())
+		{
+			twoDimensionalGrid::Location currentLocation = path[index];
+			int xLocation = std::get<0>(currentLocation);
+			int yLocation = std::get<1>(currentLocation);
+			int bufferValue = yLocation * nMapWidth + xLocation;
+			pOutBuffer[index - 1] = bufferValue;
+		}
+		else
+		{
+			pOutBuffer[index - 1] = 0;
+		}
+	}
+
 
 	draw_grid(grid, 3, nullptr, nullptr, &path);
 	std::cout << "-------------------" << std::endl;
