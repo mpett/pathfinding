@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Struct Name="std::hash&lt;tuple&lt;int, int&gt;&gt;" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pathfinding.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Graph&lt;L&gt;" Collapsed="true">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pathfinding.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="PriorityQueue&lt;T, Number&gt;" Collapsed="true">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAABAAAAAAQAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pathfinding.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="twoDimensionalGrid" Collapsed="true">
+    <Position X="2" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAARAAAAAQAQAAAAAAAAAAxAAAAIIAAAAAAAAA=</HashCode>
+      <FileName>Pathfinding.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="GridWithWeights" Collapsed="true">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAABAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pathfinding.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
