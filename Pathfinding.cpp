@@ -325,9 +325,17 @@ int FindPath(const int nStartX, const int nStartY,
 	int* pOutBuffer, const int nOutBufferSize) 
 {
 	twoDimensionalGrid grid(nMapWidth, nMapHeight);
-	add_rect(grid, 0, 1, 0, 2);
-	add_rect(grid, 2, 1, 2, 1);
+	//add_rect(grid, 0, 1, 0, 2);
+	//add_rect(grid, 2, 1, 2, 1);
 
+	for (int y = 0; y < nMapHeight; ++y) {
+		for (int x = 0; x < nMapWidth; ++x) {
+			if (pMap[y * nMapWidth + x] == 0)
+			{
+				grid.walls.insert(twoDimensionalGrid::Location{ x, y });
+			}
+		}
+	}
 
 	twoDimensionalGrid::Location start{ nStartX, nStartY };
 	twoDimensionalGrid::Location goal{ nTargetX, nTargetY };
@@ -352,9 +360,11 @@ int FindPath(const int nStartX, const int nStartY,
 }
 
 int main() {	
+
 	unsigned char pMap[] = { 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1 };
 	int pOutBuffer[12];
 	int result = FindPath(0, 0, 1, 2, pMap, 4, 3, pOutBuffer, 12);
+
 	std::cout << result << std::endl;
 	std::getchar();
 	return 0;
