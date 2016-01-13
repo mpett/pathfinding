@@ -1,5 +1,5 @@
 ﻿C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ConsoleApplication4.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Pathfinding.cpp
 c:\users\en f3t valross\documents\visual studio 2015\projects\consoleapplication4\consoleapplication4\pathfinding.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\en f3t valross\documents\visual studio 2015\projects\consoleapplication4\consoleapplication4\pathfinding.cpp(260): warning C4018: '<': signed/unsigned mismatch
+c:\users\en f3t valross\documents\visual studio 2015\projects\consoleapplication4\consoleapplication4\pathfinding.cpp(261): warning C4018: '<': signed/unsigned mismatch
   ConsoleApplication4.vcxproj -> C:\Users\En f3t valross\Documents\Visual Studio 2015\Projects\ConsoleApplication4\Debug\Pathfinding.exe
