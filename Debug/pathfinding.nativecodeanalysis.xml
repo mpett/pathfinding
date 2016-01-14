@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\en f3t valross\documents\visual studio 2015\projects\consoleapplication4\consoleapplication4\</FILEPATH>
+      <FILENAME>pathfinding.cpp</FILENAME>
+      <LINE>287</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: 'getchar'.</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>269</FUNCLINE>
+    <PATH />
+  </DEFECT>
+</DEFECTS>
