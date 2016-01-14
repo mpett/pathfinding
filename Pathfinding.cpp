@@ -62,8 +62,6 @@ struct PriorityQueue {
 	}
 };
 
-
-
 struct twoDimensionalGrid {
 	typedef tuple<int, int> Location;
 
@@ -208,27 +206,4 @@ int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int
 
 	int shortestLength = path.size() - 1;
 	return shortestLength;
-}
-
-int main() {	
-
-	unsigned char pMap[] = {
-		1, 1, 1, 1,
-		0, 1, 0, 1,
-		0, 1, 1, 1
-	};
-	int pOutBuffer[12];
-
-	int nRes = FindPath(0, 0, 1, 2, pMap, 4, 3, pOutBuffer, 12);
-	assert(nRes == 3);
-
-	assert(pOutBuffer[0] == 1);
-	assert(pOutBuffer[1] == 5);
-	assert(pOutBuffer[2] == 9);
-	std::cout << nRes << std::endl;
-
-
-	std::getchar();
-
-	return 0;
 }
