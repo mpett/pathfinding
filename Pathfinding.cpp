@@ -200,10 +200,8 @@ void a_star_search
 	typedef typename Graph::Location Location;
 	PriorityQueue<Location> frontier;
 	frontier.put(start, 0);
-
 	came_from[start] = start;
 	cost_so_far[start] = 0;
-
 	while (!frontier.empty()) {
 		auto current = frontier.get();
 
@@ -223,10 +221,9 @@ void a_star_search
 	}
 }
 
-int FindPath(const int nStartX, const int nStartY,
-	const int nTargetX, const int nTargetY,
-	const unsigned char* pMap, const int nMapWidth, const int nMapHeight,
-	int* pOutBuffer, const int nOutBufferSize) 
+int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int nTargetY,
+				const unsigned char* pMap, const int nMapWidth, const int nMapHeight,
+				int* pOutBuffer, const int nOutBufferSize) 
 {
 	twoDimensionalGrid grid(nMapWidth, nMapHeight);
 
@@ -243,14 +240,10 @@ int FindPath(const int nStartX, const int nStartY,
 	twoDimensionalGrid::Location goal{ nTargetX, nTargetY };
 	unordered_map<twoDimensionalGrid::Location, twoDimensionalGrid::Location> came_from;
 	unordered_map<twoDimensionalGrid::Location, int> cost_so_far;
-	a_star_search(grid, start, goal, came_from, cost_so_far);
 	
-	draw_grid(grid, 2, nullptr, &came_from);
-	std::cout << std::endl;
-	draw_grid(grid, 3, &cost_so_far, nullptr);
-	std::cout << std::endl;
-
+	a_star_search(grid, start, goal, came_from, cost_so_far);
 	unordered_map<twoDimensionalGrid::Location, twoDimensionalGrid::Location>::const_iterator got = came_from.find(goal);
+	
 	if (got == came_from.end())
 		return -1;
 	
@@ -272,8 +265,6 @@ int FindPath(const int nStartX, const int nStartY,
 		}
 	}
 
-	draw_grid(grid, 3, nullptr, nullptr, &path);
-	std::cout << "-------------------" << std::endl;
 	int shortestLength = path.size() - 1;
 	return shortestLength;
 }
@@ -294,6 +285,7 @@ int main() {
 	assert(pOutBuffer[1] == 5);
 	assert(pOutBuffer[2] == 9);
 	std::cout << nRes << std::endl;
+
 
 	std::getchar();
 
