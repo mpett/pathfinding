@@ -206,9 +206,5 @@ int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int
 	}
 
 	int shortestLength = path.size() - 1;
-	if (shortestLength == 0)
-	{
-		return 1;
-	}
 	return shortestLength;
 }
